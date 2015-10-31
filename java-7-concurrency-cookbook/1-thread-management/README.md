@@ -123,6 +123,9 @@ e.g. [Result.java](Result.java) [SearchTask.java](SerachTask.java)
 
 ## Processing uncontrolled exceptions in a group of threads
 
+Capture all the uncaught exceptions throwns by any `Thread` of the `ThreadGroup` class.
+
+e.g. [ThreadGroupHandler.java](ThreadGroupHandler.java) [GroupExceptionTask.java](GroupExceptionTask)
 
 
 ## Creating threads through a factory
