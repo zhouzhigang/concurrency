@@ -2,7 +2,7 @@
 
 ## [1. Thread Management](1-thread-management)
 
-## 2. Basic Thread Synchronization
+## [2. Basic Thread Synchronization](2-basic-thread-synchronization)
 
 ## 3. Thread Synchronization Utilities
 
