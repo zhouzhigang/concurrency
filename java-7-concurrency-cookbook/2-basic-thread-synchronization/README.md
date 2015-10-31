@@ -26,3 +26,13 @@ We can use the `synchronize` keyword to protect the access to a block of code in
 
 e.g. [Account.java](Account.java) [Bank.java](Bank.java) [Company.java](Company.java) [AccountTest.java](AccountTest.java)
 
+
+## Arranging independent attributes in synchronizied classes
+
+When we use the `synchronized` keyword to protect a block of code, we must pass an object reference as a parameter.
+
+If we have two independent attributes in a class shared by mutiple threads, we must synchronize the access to each variable, but there is no problem if there is one thread accesssing one of the attributes and another thread accessing the other at the same time.
+
+e.g. [Cinema.jva](Cinema.jva) [TicketOffice1.java](TicketOffice1.jva) [TicketOffice2.java](TicketOffice2.java) [CinemaTest.java](CinemaTest.java)
+
+
