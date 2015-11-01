@@ -60,7 +60,7 @@ Example: [EventStorage.java](EventStorage.java) [Producer.java](Producer.java) [
 * allow a separation of read and writeoperations haveing mutiple readers and only one modifier
 * offer better performance than `synchronized` keyword
 
-`__Lock__` interface(and the `__ReentrantLock__` class)
+`Lock` interface(and the `ReentrantLock` class)
 
 * `lock()` get the control of lock, if it already occupied by other thread, the `lock()` method will put current thread to sleep until the other thread is finished.
 * `unlock()` free the control of the lock and allow other threads to run this critical section. If don't unlock, the other threads will be waiting forever.
@@ -83,3 +83,15 @@ One of the most significant improvements offered by locks is the `ReadWriteLock`
 The class has two locks, one for read and one for write. There can be more than one thread using read operatons simultanously, but only one thread can be using write operations. When a thread is doing a write operation, there can't be any thread doing read operations.
 
 Example: [PricesInfo.java](PricesInfo.java) [Reader.java](Reader.java) [Writer.java](Writer.java) [ReadWriteLockTest.java](ReadWriteLockTest.java)
+
+
+## Modifying Lock fairness
+
+Constructor `ReentrantLock(boolean fair)` or `ReentrantReadWriteLock(boolean fair)`
+
+* `false` is the default value, __non-fair mode__: when there are some threads waiting for a lock and the lock has to select one of them to get the access of critical section, it select one without any criteria.
+* ` true` __fair mode__: when there are some threads waiting for a lock and the lock has to select one of to get the access of critical section, it selects the thread that has been waiting for the most time.
+
+Note: The fair attribute only affect `lock()` and `unlock()` methods. As `tryLock()` method doesn't put the thread to sleep if the `Lock` interface is used.
+
+e.g. [FairPrintQueue.java](FairPrintQueue.java) [FairJob.java](FairJob.java)
