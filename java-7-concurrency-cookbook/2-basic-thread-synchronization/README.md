@@ -77,3 +77,9 @@ __Note:__ We have to be careful with the use of `Locks` to avoid __deadlocks__. 
 Example: [PrintQueue.java](PrintQueue.java) [Job.java](Job.java)
 
 
+## Synchronizing data access with read/write locks
+
+One of the most significant improvements offered by locks is the `ReadWriteLock` interface and `ReentrantReadWriteLock` class.
+The class has two locks, one for read and one for write. There can be more than one thread using read operatons simultanously, but only one thread can be using write operations. When a thread is doing a write operation, there can't be any thread doing read operations.
+
+Example: [PricesInfo.java](PricesInfo.java) [Reader.java](Reader.java) [Writer.java](Writer.java) [ReadWriteLockTest.java](ReadWriteLockTest.java)
