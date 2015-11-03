@@ -35,5 +35,15 @@ When the thread has finished the use of the shared resource, it must release the
 * `tryAcquire()` if acquire the semaphore failed, it will return the `false` value instead of being blocked and waits for the release of thesemaphore.
 * `release()` free the semaphore
 
-e.g. [PrintQueue.jva](PrintQueue) [Job.java](Job.java)
+e.g. [PrintQueue.java](PrintQueue.java) [Job.java](Job.java)
 
+
+## Controlling concurrent access to multiple copies of a resource
+
+Semaphore not only can protect the access to one shared resource/critical section, but also can be used when we need to protect various copies of a resource, or when a critical section that can be executed by more than one thread at the same time.
+
+The `acquire()`, `acquireUninterruptibly()`, `tryAcquire()`, and `release()` methods have an additional version which has an `int` parameter.
+This parameter represents the number of permits that the thread that use them wants to acquire or release, so as to say, the number of units that this thread wants to delete or to add to the internal counter of the semaphore.
+If the value of this counter is less than this value, the thread will be blocked until the counter get this value or a greater one.
+
+e.g [MutiplePrintQueue.java](MutiplePrintQueue.java) [MutipleJob.java](MutipleJob.java)
