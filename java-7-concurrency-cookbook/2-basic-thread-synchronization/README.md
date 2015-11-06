@@ -114,4 +114,4 @@ So it must inside `lock()` and `unblock()` block of code.
 * `awaitUninterruptibly()`
 * `awaitUntil(Date date)` 
 
-e.g. [FileMock.java](FileMock.java) [Buffer.java](Buffer.java) [FileProducer.java](FileProducer.java) [FileConsumer.java](FileConsumer.java) [FileProducerConsumerTest.java](FileProducerConsumerTest.java)
+e.g. [FileMock.java](using-multiple-conditions-in-lock/FileMock.java) [Buffer.java](using-multiple-conditions-in-lock/Buffer.java) [FileProducer.java](using-multiple-conditions-in-lock/FileProducer.java) [FileConsumer.java](using-multiple-conditions-in-lock/FileConsumer.java) [FileProducerConsumerTest.java](using-multiple-conditions-in-lock/FileProducerConsumerTest.java)
