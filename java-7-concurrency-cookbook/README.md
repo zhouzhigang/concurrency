@@ -30,6 +30,7 @@
 * [Controlling concurrent access to a resource](3-thread-synchronization-utilities/controlling-concurrent-access-to-resource)
 * [Controlling concurrent access to multiple copies of a resource](controlling-concurrent-access-to-multiple-copies-of-resource)
 * [Waiting for multiple concurrent events](3-thread-synchronization-utilities/waiting-for-multiple-concurent-events)
+* [Synchronizing tasks in a common point](3-thread-sysnchronization-utilities/synchronizing-tasks-in-a-common-point)
 
 ## 4. Thread Executors
 

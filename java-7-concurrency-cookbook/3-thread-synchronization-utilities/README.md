@@ -59,3 +59,13 @@ e.g. [MutiplePrintQueue.java](controlling-concurrent-access-to-multiple-copies-o
 When the counter arrives to `0`, the class wakes up all the threads that were sleeping in the `await()` method.
 
 e.g. [VideoConference.java](waiting-for-multiple-concurrent-events/VideoConference.java) [Participant.java](waiting-for-multiple-concurrent-events/Participant.java) [Main.java](waiting-for-multiple-concurrent-events/Main.java)
+
+
+## Synchronizing tasks in a common point
+
+`CyclicBarrier` allows the synchronization of two or more threads in a determined point.
+Similar to the `CountDownLatch` class, but presents some differentces that make them a more powerful class.
+
+* `CyclicBarrier(int parties, Runnable barrierAction)` initialized with an integer, which is the number of threads that will be synchronized in a determined point.
+* `await()` when a thread arrives to the determined point, it calls the `await()` method to wait for the other threads, the `CyclicBarrier` class will block the thread that is sleeping until the other threads arrive. when the last thread calls the `await()` method, it wakes up all the threads that were waiting and continues with its job.
+
