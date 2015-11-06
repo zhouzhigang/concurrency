@@ -24,16 +24,16 @@ We can use the `synchronize` keyword to protect the access to a block of code in
         // java code
     }
 
-e.g. [Account.java](Account.java) [Bank.java](Bank.java) [Company.java](Company.java) [AccountTest.java](AccountTest.java)
+e.g. [Account.java](sychronizing-method/Account.java) [Bank.java](sychronizing-method/Bank.java) [Company.java](sychronizing-method/Company.java) [AccountTest.java](sychronizing-method/AccountTest.java)
 
 
-## Arranging independent attributes in synchronizied classes
+## Arranging independent attributes in synchronized classes
 
 When we use the `synchronized` keyword to protect a block of code, we must pass an object reference as a parameter.
 
 If we have two independent attributes in a class shared by mutiple threads, we must synchronize the access to each variable, but there is no problem if there is one thread accesssing one of the attributes and another thread accessing the other at the same time.
 
-e.g. [Cinema.java](Cinema.java) [TicketOffice1.java](TicketOffice1.java) [TicketOffice2.java](TicketOffice2.java) [CinemaTest.java](CinemaTest.java)
+e.g. [Cinema.java](arranging-independent-attributes-in-synchronized-class/Cinema.java) [TicketOffice1.java](arranging-independent-attributes-in-synchronized-class/TicketOffice1.java) [TicketOffice2.java](arranging-independent-attributes-in-synchronized-class/TicketOffice2.java) [CinemaTest.java](arranging-independent-attributes-in-synchronized-class/CinemaTest.java)
 
 
 ## Using conditions in synchronized code
@@ -48,10 +48,10 @@ A producer can't save data in the buffer if it's full and the consumer can't tak
 
 We have to keep checking the conditions and calling the `wait()` method in a while loop(can't continue until the condition is true).
 
-Example: [EventStorage.java](EventStorage.java) [Producer.java](Producer.java) [Consumer.java](Consumer.java) [ProducerConsumerTest.java](ProducerConsumer.java)
+Example: [EventStorage.java](using-conditions-in-sychronized-code/EventStorage.java) [Producer.java](using-conditions-in-sychronized-code/Producer.java) [Consumer.java](using-conditions-in-sychronized-code/Consumer.java) [ProducerConsumerTest.java](using-conditions-in-sychronized-code/ProducerConsumer.java)
 
 
-## Synchronizaing a block of code with a Lock
+## Synchronizing a block of code with a Lock
 
 `Lock` interface and classes that implement is(as `ReentrantLock`) is more powerful and flexible mechanism than the `synchronized` keyword.
 
@@ -74,7 +74,7 @@ __Note:__ We have to be careful with the use of `Locks` to avoid __deadlocks__. 
        |            |
     Lock Y  <---- Thread B
 
-Example: [PrintQueue.java](PrintQueue.java) [Job.java](Job.java)
+Example: [PrintQueue.java](synchronizing-block-code-using-lock/PrintQueue.java) [Job.java](synchronizing-block-code-using-lock/Job.java)
 
 
 ## Synchronizing data access with read/write locks
@@ -82,7 +82,7 @@ Example: [PrintQueue.java](PrintQueue.java) [Job.java](Job.java)
 One of the most significant improvements offered by locks is the `ReadWriteLock` interface and `ReentrantReadWriteLock` class.
 The class has two locks, one for read and one for write. There can be more than one thread using read operatons simultanously, but only one thread can be using write operations. When a thread is doing a write operation, there can't be any thread doing read operations.
 
-Example: [PricesInfo.java](PricesInfo.java) [Reader.java](Reader.java) [Writer.java](Writer.java) [ReadWriteLockTest.java](ReadWriteLockTest.java)
+Example: [PricesInfo.java](synchronizing-data-access-with-read-write-lock/PricesInfo.java) [Reader.java](synchronizing-data-access-with-read-write-lock/Reader.java) [Writer.java](synchronizing-data-access-with-read-write-lock/Writer.java) [ReadWriteLockTest.java](synchronizing-data-access-with-read-write-lock/ReadWriteLockTest.java)
 
 
 ## Modifying Lock fairness
@@ -94,7 +94,7 @@ Constructor `ReentrantLock(boolean fair)` or `ReentrantReadWriteLock(boolean fai
 
 Note: The fair attribute only affect `lock()` and `unlock()` methods. As `tryLock()` method doesn't put the thread to sleep if the `Lock` interface is used.
 
-e.g. [FairPrintQueue.java](FairPrintQueue.java) [FairJob.java](FairJob.java)
+e.g. [FairPrintQueue.java](modifying-lock-fairness/FairPrintQueue.java) [FairJob.java](modifying-lock-fairness/FairJob.java)
 
 
 ## Using multiple conditions in a Lock
