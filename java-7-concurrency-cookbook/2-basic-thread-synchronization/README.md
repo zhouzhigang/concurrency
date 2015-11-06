@@ -24,16 +24,16 @@ We can use the `synchronize` keyword to protect the access to a block of code in
         // java code
     }
 
-e.g. [Account.java](Account.java) [Bank.java](Bank.java) [Company.java](Company.java) [AccountTest.java](AccountTest.java)
+e.g. [Account.java](sychronizing-method/Account.java) [Bank.java](sychronizing-method/Bank.java) [Company.java](sychronizing-method/Company.java) [AccountTest.java](sychronizing-method/AccountTest.java)
 
 
-## Arranging independent attributes in synchronizied classes
+## Arranging independent attributes in synchronized classes
 
 When we use the `synchronized` keyword to protect a block of code, we must pass an object reference as a parameter.
 
 If we have two independent attributes in a class shared by mutiple threads, we must synchronize the access to each variable, but there is no problem if there is one thread accesssing one of the attributes and another thread accessing the other at the same time.
 
-e.g. [Cinema.java](Cinema.java) [TicketOffice1.java](TicketOffice1.java) [TicketOffice2.java](TicketOffice2.java) [CinemaTest.java](CinemaTest.java)
+e.g. [Cinema.java](arranging-independent-attributes-in-synchronized-class/Cinema.java) [TicketOffice1.java](arranging-independent-attributes-in-synchronized-class/TicketOffice1.java) [TicketOffice2.java](arranging-independent-attributes-in-synchronized-class/TicketOffice2.java) [CinemaTest.java](arranging-independent-attributes-in-synchronized-class/CinemaTest.java)
 
 
 ## Using conditions in synchronized code
@@ -48,10 +48,10 @@ A producer can't save data in the buffer if it's full and the consumer can't tak
 
 We have to keep checking the conditions and calling the `wait()` method in a while loop(can't continue until the condition is true).
 
-Example: [EventStorage.java](EventStorage.java) [Producer.java](Producer.java) [Consumer.java](Consumer.java) [ProducerConsumerTest.java](ProducerConsumer.java)
+Example: [EventStorage.java](using-conditions-in-sychronized-code/EventStorage.java) [Producer.java](using-conditions-in-sychronized-code/Producer.java) [Consumer.java](using-conditions-in-sychronized-code/Consumer.java) [ProducerConsumerTest.java](using-conditions-in-sychronized-code/ProducerConsumer.java)
 
 
-## Synchronizaing a block of code with a Lock
+## Synchronizing a block of code with a Lock
 
 `Lock` interface and classes that implement is(as `ReentrantLock`) is more powerful and flexible mechanism than the `synchronized` keyword.
 
