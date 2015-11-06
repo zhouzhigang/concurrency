@@ -46,5 +46,16 @@ The `acquire()`, `acquireUninterruptibly()`, `tryAcquire()`, and `release()` met
 This parameter represents the number of permits that the thread that use them wants to acquire or release, so as to say, the number of units that this thread wants to delete or to add to the internal counter of the semaphore.
 If the value of this counter is less than this value, the thread will be blocked until the counter get this value or a greater one.
 
-e.g [MutiplePrintQueue.java](controlling-concurrent-access-to-multiple-copies-of-resource/MutiplePrintQueue.java) [MutipleJob.java](controlling-concurrent-access-to-multiple-copies-of-resource/MutipleJob.java)
+e.g. [MutiplePrintQueue.java](controlling-concurrent-access-to-multiple-copies-of-resource/MutiplePrintQueue.java) [MutipleJob.java](controlling-concurrent-access-to-multiple-copies-of-resource/MutipleJob.java)
 
+## Waiting for multiple concurrent events
+
+`CountDownLatch` 
+
+* `CountDownLatch(int num)` intialized with an integer, which is the number of operations/events the threads are going to wait for.
+* `await()` when a thread want to wait for the execution of these operations, it puts the thread to sleep until the operations are complete.
+* `countDown()` when one of these operation finishes, it use `countDown()` method to decrement the internal counter of the `CountDownLatch`.
+
+When the counter arrives to `0`, the class wakes up all the threads that were sleeping in the `await()` method.
+
+e.g. [VideoConference.java](waiting-for-multiple-concurrent-events/VideoConference.java) [Participant.java](waiting-for-multiple-concurrent-events/Participant.java) [Main.java](waiting-for-multiple-concurrent-events/Main.java)
