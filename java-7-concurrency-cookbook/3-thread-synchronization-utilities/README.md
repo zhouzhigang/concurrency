@@ -35,8 +35,6 @@ When the thread has finished the use of the shared resource, it must release the
 * `tryAcquire()` if acquire the semaphore failed, it will return the `false` value instead of being blocked and waits for the release of thesemaphore.
 * `release()` free the semaphore
 
-e.g. [PrintQueue.java](controlling-concurrent-access-to-resource/PrintQueue.java) [Job.java](controlling-concurrent-access-to-resource/Job.java)
-
 
 ## Controlling concurrent access to multiple copies of a resource
 
@@ -45,8 +43,6 @@ Semaphore not only can protect the access to one shared resource/critical sectio
 The `acquire()`, `acquireUninterruptibly()`, `tryAcquire()`, and `release()` methods have an additional version which has an `int` parameter.
 This parameter represents the number of permits that the thread that use them wants to acquire or release, so as to say, the number of units that this thread wants to delete or to add to the internal counter of the semaphore.
 If the value of this counter is less than this value, the thread will be blocked until the counter get this value or a greater one.
-
-e.g. [MutiplePrintQueue.java](controlling-concurrent-access-to-multiple-copies-of-resource/MutiplePrintQueue.java) [MutipleJob.java](controlling-concurrent-access-to-multiple-copies-of-resource/MutipleJob.java)
 
 ## Waiting for multiple concurrent events
 
@@ -58,8 +54,6 @@ e.g. [MutiplePrintQueue.java](controlling-concurrent-access-to-multiple-copies-o
 
 When the counter arrives to `0`, the class wakes up all the threads that were sleeping in the `await()` method.
 
-e.g. [VideoConference.java](waiting-for-multiple-concurrent-events/VideoConference.java) [Participant.java](waiting-for-multiple-concurrent-events/Participant.java) [Main.java](waiting-for-multiple-concurrent-events/Main.java)
-
 
 ## Synchronizing tasks in a common point
 
@@ -68,4 +62,13 @@ Similar to the `CountDownLatch` class, but presents some differentces that make 
 
 * `CyclicBarrier(int parties, Runnable barrierAction)` initialized with an integer, which is the number of threads that will be synchronized in a determined point.
 * `await()` when a thread arrives to the determined point, it calls the `await()` method to wait for the other threads, the `CyclicBarrier` class will block the thread that is sleeping until the other threads arrive. when the last thread calls the `await()` method, it wakes up all the threads that were waiting and continues with its job.
+* `await(long time, TimeUnit unit)`
+* `reset()` One of the most important differences between `CyclicBarrier` and `CountDownLatch` is that a `CyclicBarrier` object can be reset to its initial state, assigning to its internal counter the value with which it was initializd. With this occurs, all the threads that were waiting in the `await()` method receive a `BrokenBarrierException`.
+* `isBroken()` check if the object is in broken state
+
+## [Running concurrent phased tasks](running-concurrent-phased-tasks)
+
+`Phaser` when we have some concurrent tasks divided into steps, `Phaser` provides us with the mechanism to synchronize the threads at the end of each step, so no thread start its second step until all the threads ahve finished the first one.
+
+We have to initialize the `Phaser` class with the number of tasks that participate in the synchronization operation, but we can dynamically modify this number by increasing or decreasing it.
 
