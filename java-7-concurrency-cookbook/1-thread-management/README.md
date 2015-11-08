@@ -5,18 +5,12 @@
 Concurrency
 Parallelism
 
-## Creating and running a thread
+## [Creating and running a thread](creating-running-thread)
 
-* extends `Thread` class and overriding the `run()` method
-* implements `Runnable` interface and Creating an object of `Thread` passing `Runnable` object as a parameter
+* extends `Thread`
+* implements `Runnable`
 
-e.g. [Calculator.java](creating-running-thread/Calculator.java)
-
-Note: only call `start()` method creates a new execution thread.
-The `start()` method will call `run()` method.
-
-
-## Getting and Setting thread information
+## [Getting and Setting thread information](getting-setting-thread-information)
 
 Thread attributes
 
@@ -25,118 +19,58 @@ Thread attributes
 * __Priority__
 * __Status__ six status in java: `new`, `runnable`, `blocked`, `waiting`, `timewaiting`, `terminated`
 
-e.g. [ThreadAttributes.java](getting-setting-thread-information/ThreadAttributes.java)
+## [Interrupting a thread](interrupting-thread)
 
+* `interrupt()`
+* `isInterrupted()`
+* `Thread.interrupted()`
 
-## Interrupting a thread
+## [Controlling the interruption of a thread](controlling-interruption-of-thread)
 
-* `interrupt()` set interrupted flag as true.
-* `isInterrupted()` check whether the thread has been interrupted or not, didn't change `interrupted` attribute - Recommented
-* `Thread.interrupted()` check whether current executing thread has been interrupted or not, set the `interrupted` as false
+* detect by `isInterrupted`
+* throw `InterruptedException` and catch in `run()`
 
-e.g.[PrimeGenerator.java](interrupting-thread/PrimeGenerator.java)
+## [Sleeping and resuming a thread](sleeping-resume-thread)
 
-Thread can ignore its interruption, but this is not the expected behavour.
-
-
-## Controlling the interruption of a thread
-
-* detect by `isInterrupted` - simple algorithm
-* throw `InterruptedException` and catch in `run()` method - a better mechanism to control the interruption of thread
-
-e.g. [FileSearch.java](controlling-interruption-of-thread/FileSearch.java)
-
-Note: The `InterruptedException` is thrown by some java methods related with the concurrency API such as `sleep()`.
-
-
-## Sleeping and resuming a thread
-
-* `Thread.sleep(integer)` Thread leaves the CPU and stops its execution for a period of time. During this time, it's not consuming CPU time, so the CPU time can be executing other tasks.
+* `Thread.sleep(integer)`
 * `TimeUnit.SECONDS.sleep(integer)`
-* `yield()` Thread object can leave the CPU for other tasks. The JVM doesn't guarantee that it will comply with this request. Normally, it's only used for debug purposes.
+* `yield()`
 
-Note: When `Thread` is sleeping and is interrupted, the method throws an `InterruptedException` exception immediately and doesn't wait until the sleeping time finishes.
+## [Waiting for finalization of a thread](waiting-for-finalization-of-thread)
 
-e.g. [FileClock.java](sleeping-resuming-thread/FileClock.java)
-
-
-## Waiting for finalization of a thread
-
-* `join()`  it suspends the execution of the calling thread until the object called finishes its execution.
+* `join()`
 * `join(long milliseconds)`
 * `join(long milliseconds, long nanos)`
 
-e.g. [DataSourcesLoader.java](waiting-for-finalization-of-thread/DataSourcesLoader.java) [NetworkConnectionsLoader.java](waiting-for-finalization-of-thread/NetworkConnectionsLoader.java) [WaitingFinalization.java](waiting-for-finalization-of-thread/WaitingFinalization.java)
+## [Creating and running a daemon thread](creating-running-daemon-thread)
 
+* `setDaemon(true)`
+* `isDaemon()`
 
-## Creating and running a daemon thread
-
-Daemon thread has very low priority and normally only executes when no other thread of the same program is running.
-When daemon threads are the only threads running in a program, the JVM ends the program finishing these threads.
-The daemon threads are normally used as service providers for normal(also called user) threads running in the same program. They usually have infiniate loop that wait for the service request or performs the tasks of the thread.
-A typical example of these kind of threads is the Java garbage collector.
-
-* `setDaemon(true)` mark the thread as a daemon thread, we only can call this method before call the `start()` method. Once the thread is running, we can't modify its daemon status.
-* `isDaemon()` check if a thread is a daemon thread or user thread.
-
-e.g. [Event.java](creating-running-daemon-thread/Event.java) [WriterTask.java](creating-running-daemon-thread/WriterTask.java) [CleanerTask.java](creating-running-daemon-thread/CleanerTask.java) [Daemon.java](creating-running-daemon-thread/Daemon.java)
-
-
-## Processing uncontrolled exceptions in a thread
-
-* __Checked exceptions__ must be specified in the throws clause of a method or caught inside them. e.g. `IOException`, `ClassNotFoundException`
-* __Unchecked exceptions__ don't have to be specified or caught. e.g. `NumberFormatException`
-
-When an unchecked exception is thrown inside the `run()` method of a Thread object, the default behaviour is to write the stack trace in the console and exit the program.
-Fortunately, Java provide a mechanism to catch and treat unchecked exceptions thrown in a Thread object to avoid program ending.
+## [Processing uncontrolled exceptions in a thread](processing-uncontrolled-exception-in-thread)
 
 * `UncaughtExceptionHandler` interface, `uncaughtException()` method
-* `ThreadGroup` handler for a group of threads
-* `Thread.setDefaultUncaughtException()` the default handler for all the thread objects
+* `ThreadGroup` handler
+* `Thread.setDefaultUncaughtException()`
 
-e.g. [ExceptinHandler.java](processing-uncontrolled-exception-in-thread/ExceptionHandler.java) [ExceptionTask.java](processing-uncontrolled-exception-in-thread/ExceptionTask.java)
+## [Using local thread variables](using-local-thread-variables)
 
-## Using local thread variables
+* `initialValue()`
+* `get()`
+* `set()`
+* `remove()`
 
-__`ThreadLocal`__ create an attribute that won't be shared between all the threads that using the same Runnable object
+## [Grouping threads into a group](grouping-threads-into-group)
 
-* `initialValue()` assign a value for that thread and return the initial value
-* `get()` read the value of a thread-local variable
-* `set()` change the value of a thread-local variable
-* `remove()` delete the value stored in the thread-local variable
+* `list()`
+* `activeCount()`
+* `enumerate()`
 
-__`InheritableThreadLocal`__ provides inheritance of values for threads created from a thread.
-We can override the `childValue()` method that is called to initialize the value of the child thread in the thread-local varible.
-
-e.g. [UnsafeTask.java](using-local-thread-variables/UnSafeTask.java) [SafeTask.java](using-local-thread-variables/SafeTask.java)
-
-
-## Grouping threads into a group
-
-`ThreadGroup` to work with group of threads. A `ThreadGroup` object can be formed by `Thread` objects and by another `ThreadGroup` object, generating a tree structure of threads.
-
-* `list()` information about the ThreadGroup object
-* `activeCount()` get thread objects associated with the ThreadGroup object
-* `enumerate()` get a list of active threads in ThreadGoup
-
-e.g. [Result.java](grouping-threads-into-group/Result.java) [SearchTask.java](grouping-threads-into-group/SerachTask.java)
-
-## Processing uncontrolled exceptions in a group of threads
+## [Processing uncontrolled exceptions in a group of threads](processing-uncontrolled-exception-in-group-threads)
 
 Capture all the uncaught exceptions throwns by any `Thread` of the `ThreadGroup` class.
 
-e.g. [ThreadGroupHandler.java](processing-uncontrolled-exception-int-group-threads/ThreadGroupHandler.java) [GroupExceptionTask.java](processing-uncontrolled-exception-int-group-threads/GroupExceptionTask)
-
-
-## Creating threads through a factory
-
-Factory pattern
-
-* easy to change the class of the objects created or the way we create these objects
-* easy to limit the creation of objects for limited resources
-* easy to generate statistical data about the creation objects
+## [Creating threads through a factory](creating-threads-through-factory)
 
 __ThreadFactory__ interface to implement a Thread object factory. It has only one method called `newThread`.
-
-e.g. [MyThreadFactory.java](creaing-threads-through-factory/MyThreadFactory.java) [FactoryTask.java](creaing-threads-through-factory/FactoryTask.java)
 
