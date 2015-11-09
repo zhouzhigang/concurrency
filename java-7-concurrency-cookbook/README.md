@@ -31,14 +31,16 @@
 * [Controlling concurrent access to multiple copies of a resource](controlling-concurrent-access-to-multiple-copies-of-resource)
 * [Waiting for multiple concurrent events](3-thread-synchronization-utilities/waiting-for-multiple-concurent-events)
 * [Synchronizing tasks in a common point](3-thread-sysnchronization-utilities/synchronizing-tasks-in-a-common-point)
+* [Running concurrent phased tasks](running-concurrent-phased-tasks)
 
-## 4. Thread Executors
 
-## 5. Fork/join Framework
+## [4. Thread Executors](4-thread-executors)
 
-## 6. Concurrent Collections
+## [5. Fork/join Framework](5-fork-join-framework)
 
-## 7. Customizing Concurrency Classes
+## [6. Concurrent Collections](6-concurrent-collections)
 
-## 8. Testing Concurrent Applications
+## [7. Customizing Concurrency Classes](7-customizing-concurrency-classes)
+
+## [8. Testing Concurrent Applications](8-testing-concurrent-applications)
 
