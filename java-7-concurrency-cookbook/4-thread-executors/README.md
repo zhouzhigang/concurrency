@@ -34,6 +34,19 @@ Another important advantage of the Executor framework is the `Callable` interfac
 
 ## [Executing tasks in an executor that returns a result](executing-tasks-in-executor-returns-result)
 
+    Public class Task implements Callable<T> {
+        @Override
+        public T call() throws Exception {
+            return t;
+        }
+    }
+
+    Future<T> result = executor.submit(task);
+    
+    result.isDone(); // loop to check the status
+    
+    result.get(); // block until task finish
+
 ## [Running multiple tasks and processing the first result](running-multiple-tasks-processing-first-result)
 
 ## [Running multiple tasks and processing all the results](running-multiple-tasks-processing-all-results)
