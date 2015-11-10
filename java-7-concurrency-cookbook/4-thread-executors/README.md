@@ -29,6 +29,9 @@ Another important advantage of the Executor framework is the `Callable` interfac
 
 ## [Creating a fixed-size thread executor](creating-fixed-size-thread-executor)
 
+    ThreadPoolExecutor executor = (ThreadPoolExecutor)Executors.newFixedThreadPool(count); // newSingleThreadExecutor()
+    execurot.getTaskCount();
+
 ## [Executing tasks in an executor that returns a result](executing-tasks-in-executor-returns-result)
 
 ## [Running multiple tasks and processing the first result](running-multiple-tasks-processing-first-result)
