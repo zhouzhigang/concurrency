@@ -20,7 +20,17 @@ Java concurrency collections
 
 ## [Using non-blocking thread-safe lists](using-non-blocking-thread-safe-lists)
 
+* `ConcurrentLinkedDeque`
+    + `add`, `offer`
+    + `remove`, `poll`
+    + `getXxx`, `peek`
+
 ## [Using blocking thread-safe lists](using-blocking-thread-safe-lists)
+
+* `LinkedBlockingDeque`
+    + `add`, `offer`
+    + `remove`, `poll`
+    + `getXxx`, `peek`, `take`
 
 ## [Using blocking thread-safe lists ordered by priority](using-blocking-thread-safe-lists-ordered-by-priority)
 
