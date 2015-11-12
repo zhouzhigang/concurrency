@@ -1,6 +1,9 @@
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Generate a list of random products.
+ */
 public class ProductListGenerator {
 
     public List<Product> generate(int size) {

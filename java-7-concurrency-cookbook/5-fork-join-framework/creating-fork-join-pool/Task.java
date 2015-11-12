@@ -1,6 +1,9 @@
 import java.util.concurrent.RecursiveAction;
 import java.util.List;
 
+/**
+ * Task that extends RecursiveAction(to return result).
+ */
 public class Task extends RecursiveAction {
 
     // the parent class of RecursiveAcion class, The ForJoin class, implementes the Serializable interface
@@ -27,11 +30,14 @@ public class Task extends RecursiveAction {
         if (last - first < 10) {
             updatePrices();
         } else {
+            // devide the task
             int middle = (last + first) / 2;
             System.out.printf("Task: Pending tasks: %s \n", getQueuedTaskCount());
             Task t1 = new Task(products, first, middle+1, increment);
             Task t2 = new Task(products, middle+1, last, increment);
-            invokeAll(t1, t2);
+            // excute tasks in ForkJoinPool using the invokeAll() method
+            // main difference between Executor and the Fork/Join framework
+            invokeAll(t1, t2); // synchronous call
         }
     }
 

@@ -1,3 +1,6 @@
+/**
+ * Product that willstor the name and price of a product.
+ */
 public class Product {
 
     private String name;
