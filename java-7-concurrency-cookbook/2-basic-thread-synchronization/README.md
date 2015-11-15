@@ -16,44 +16,83 @@ Two basic synchronization mechannisms offered by Java language:
         // java code
     }
 
+e.g. Simulate a bank account and two threads.
 
 ## [Arranging independent attributes in synchronized classes](arranging-independent-attributes-in-synchronized-class)
 
 If we have two independent attributes in a class shared by mutiple threads, we must synchronize the access to each variable, but there is no problem if there is one thread accesssing one of the attributes and another thread accessing the other at the same time.
 
+e.g. Simulate a cinema with two screens and two ticket offices.
+
 ## [Using conditions in synchronized code](using-conditions-in-sychronized-code)
 
-* `wait()`
-* `notify()` or `notifyAll()`
+    // get/set method in shared object
+    synchronized set/get() {
+        while (full/empty) {
+            try {
+                wait();
+            } catch (InterruptedException) {}
+        }
+        // do set/get
+        notifyAll();
+    }
 
+e.g. __Producer Consumer__ problem using `synchronized` and `wait`, `notify`.
 
 ## [Synchronizing a block of code with a Lock](synchronizing-block-code-using-lock
 
-`Lock` interface(and the `ReentrantLock` class)
+    private final Lock lock = new ReentrantLock();
 
-* `lock()`
-* `unlock()`
-* `tryLock()`
+    try {
+        lock.lock();
+        // do something else
+    } catch (InterruptedException e) {
+    } finally {
+        lock.unlock();
+    }
+
+e.g. Simulate a print queue.
 
 ## [Synchronizing data access with read/write locks](synchronizing-data-access-with-read-write-lock)
 
-One of the most significant improvements offered by locks is the `ReadWriteLock` interface and `ReentrantReadWriteLock` class.
-The class has two locks, one for read and one for write. There can be more than one thread using read operatons simultanously, but only one thread can be using write operations. When a thread is doing a write operation, there can't be any thread doing read operations.
+    lock.readLock().lock();
+    // read value
+    lock.readLock().unlock();
 
+    lock.writeLock().lock();
+    // write value
+    lock.writeLock().unlock();
+
+e.g. Simulate a program that use `ReadWriteLock` to control the access of an object that stores the prices of two products.
 
 ## [Modifying Lock fairness](modifying-lock-fairness)
 
 Constructor `ReentrantLock(boolean fair)` or `ReentrantReadWriteLock(boolean fair)`
 
+e.g. Check the difference between fair and non-fair modes.
 
 ## Using multiple conditions in a Lock
 
+    private ReentrantLock lock;
+    private Condition lines;
+    private Condition space;
+    // constructor
+    lock = new ReentrantLock;
+    lines = lock.newCondition(); // line condtion wait for readable line
+    space = lock.newCondition(); // space condition wait for free space 
 
-`Condition` created by `lock.newCondition()`, must inside `lock()` and `unblock()` block of code.
 
-* `await()`
-* `signal()` or `signalAll()`
-* `await(long time, TimeUnit unit)`
-* `awaitUninterruptibly()`
-* `awaitUntil(Date date)` 
+    lock.lock();
+    try {
+        while (full/empty) {
+            space/lines.await();
+        }
+        // write/read
+        lines/space.singalAll();
+    } catch (IntterruptedException e) {
+    } finally {
+        lock.unlock();
+    }
+
+e.g. __Producer-Consumer__ problem using `Lock` and `Condition`
 
