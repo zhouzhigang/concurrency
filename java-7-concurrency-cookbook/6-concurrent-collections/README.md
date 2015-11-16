@@ -34,9 +34,31 @@ Java concurrency collections
 
 ## [Using blocking thread-safe lists ordered by priority](using-blocking-thread-safe-lists-ordered-by-priority)
 
+* `PriorityBlockingQueue` (`Compable` - `compareTo()`)
+    + `add`, `put`
+    + `poll`, `clear`
+    + `peek`, `take`
+
 ## [Using thread-safe lists with delayed elements](using-thread-safe-lists-with-delayed-elements)
 
+* `DelayedQueue`
+    + `compareTo(delayed o)`
+    + `getDelay(TimeUnit unit)`
+    + `add`, `offer`
+    + `peek`, `take`
+
 ## [Using thread-safe navigable maps](using-thread-safe-navigable-maps)
+
+* `ConcurrentNavigableMap`
+* `ConcurrentSkipListMap`
+    + `put()`
+    + `firstEntry()`, `LastEntry()`
+    + `subMap()`
+    + `headMap(K toKey)`
+    + `taiMap(K fromKey)`
+    + `putIfAbsent(K key, V value)`
+    + `PollFirst()`, `pollLastEntry()`
+    + `replace(K key, V value)`
 
 ## [Generating concurrent random numbers](generating-concurrent-random-numbers)
 

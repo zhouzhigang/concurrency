@@ -35,10 +35,19 @@
 
 
 ## [4. Thread Executors](4-thread-executors)
+* [Creating a thread executor](4-thread-executor/screating-thread-executor)
+* [Creating a fixed-size thread executor](4-thread-executor/creating-fixed-size-thread-executor)
+* [Executing tasks in an executor that returns a result](4-thread-executor/executing-tasks-in-executor-returns-result)
 
 ## [5. Fork/join Framework](5-fork-join-framework)
+* [Creating a Fork/Join pool](5-fork-join-framework/creating-fork-join-pool)
 
 ## [6. Concurrent Collections](6-concurrent-collections)
+* [Using non-blocking thread-safe lists](6-concurrent-collections/using-non-blocking-thread-safe-lists)
+* [Using blocking thread-safe lists](6-concurrent-collections/using-blocking-thread-safe-lists)
+* [Using blocking thread-safe lists ordered by priority](6-concurrent-collections/using-blocking-thread-safe-lists-ordered-by-priority)
+* [Using thread-safe lists with delayed elements](6-concurrent-collections/using-thread-safe-lists-with-delayed-elements)
+* [Using thread-safe navigable maps](6-concurrent-collections/using-thread-safe-navigable-maps)
 
 ## [7. Customizing Concurrency Classes](7-customizing-concurrency-classes)
 
