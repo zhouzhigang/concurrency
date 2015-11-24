@@ -103,7 +103,34 @@ e.g. Look for a number in a matrix of numbers.
 
 e.g. Look for files in three different folders(divided into three steps).
 
-## [Controlling phase change in concurrent phased tasks]()
+## [Controlling phase change in concurrent phased tasks](controlling-phase-change-in-concurrent-phased-tasks)
+
+    public class MyPhaser extends Phaser {
+        @Override
+        protected boolean onAdvance(int phase, int registeredParties) {
+            switch(phase) {
+                case 0:
+                    return xxx();
+                // ...
+                default:
+                    return true;
+            }
+        }
+    }
+
+    public class Paticipant implements Runnable {
+        @Override
+        public void run() {
+            // ...
+            phaser.arriveAndAwaitAdvance();
+            // ..
+            phaser.arriveAndAwaitAdvance();
+        }
+    }
+
+    MyPhaser phaser = new MyPhaser();
+    Participant participant = new Participant(phaser);
+    phaser.register();
 
 ## [Changing data between concurrent tasks]()
 
