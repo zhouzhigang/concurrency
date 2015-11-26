@@ -132,6 +132,9 @@ e.g. Look for files in three different folders(divided into three steps).
     Participant participant = new Participant(phaser);
     phaser.register();
 
-## [Changing data between concurrent tasks]()
+## [Changing data between concurrent tasks](changing-data-between-concurrent-tasks)
+
+    exchanger.exchange(data);
+
 
 `Exchanger`
