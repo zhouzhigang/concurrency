@@ -49,6 +49,18 @@ Another important advantage of the Executor framework is the `Callable` interfac
 
 ## [Running multiple tasks and processing the first result](running-multiple-tasks-processing-first-result)
 
+    public class Task implements Callable<T> {
+        @Override
+        public T call() throws Exception {
+            return t;
+        }
+    }
+
+    ExecutorService executor = (ExecutorService)Executors.newCachedThreadPool();
+    T result = executor.invokeAny(tasks); // need try-catch or throw
+
+    executor.shutdown();
+
 ## [Running multiple tasks and processing all the results](running-multiple-tasks-processing-all-results)
 
 ## [Running a task in an executor after a delay](running-task-in-executor-after-delay)
