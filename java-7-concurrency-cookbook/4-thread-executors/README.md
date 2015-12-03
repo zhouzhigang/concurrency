@@ -63,6 +63,28 @@ Another important advantage of the Executor framework is the `Callable` interfac
 
 ## [Running multiple tasks and processing all the results](running-multiple-tasks-processing-all-results)
 
+    public class Task implements Callable<T> {
+        @Override
+        public T call() throws Exception {
+            return t;
+        }
+    }
+
+    ExecutorService executor = (ExecutorService)Executors.newCachedThreadPool();
+    // use Future<T> to get the result
+    List<Future<T>> resultList = executor.invokeAll(tasks); // need try-catch or throw
+
+    executor.shutdown();
+
+    for (int i = 0; i < resultList.size(); i++) {
+        Future<T> future = resultList.get(i);
+        try {
+            T result = future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
 ## [Running a task in an executor after a delay](running-task-in-executor-after-delay)
 
 ## [Running a task in an executor periodically](running-task-in-executor-periodically)
