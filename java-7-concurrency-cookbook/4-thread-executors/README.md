@@ -87,6 +87,15 @@ Another important advantage of the Executor framework is the `Callable` interfac
 
 ## [Running a task in an executor after a delay](running-task-in-executor-after-delay)
 
+    ScheduledThreadPoolExecutor executor = (ScheduledThreadPoolExecutor)Executors.newScheduledThreadPool(1);
+
+    executor.schedule(task, time, timeUnit);
+    
+    executor.shutdown();
+
+    executor.awaitTermination(time, timeUnit); // need try-catch or throw InterruptedException
+
+
 ## [Running a task in an executor periodically](running-task-in-executor-periodically)
 
 ## [Canceling a task in an executor](canceling-task-in-executor)
