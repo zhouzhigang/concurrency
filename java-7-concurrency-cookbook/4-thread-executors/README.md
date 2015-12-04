@@ -108,6 +108,13 @@ Another important advantage of the Executor framework is the `Callable` interfac
 
 ## [Canceling a task in an executor](canceling-task-in-executor)
 
+    Future<T> result = executor.submit(task);
+
+    result.cancle(true);
+
+    result.isCancelled();
+    result.isDone();
+
 ## [Controlling a task finishing in an executor](controlling-task-finishing-in-executor)
 
 ## [Separating the launching of tasks and the processing of their results in an executor](separating-launching-tasks-processing-results-in-executor)
