@@ -117,6 +117,19 @@ Another important advantage of the Executor framework is the `Callable` interfac
 
 ## [Controlling a task finishing in an executor](controlling-task-finishing-in-executor)
 
+
 ## [Separating the launching of tasks and the processing of their results in an executor](separating-launching-tasks-processing-results-in-executor)
+
+    ExecutorService executor = (ExecutorService)Executors.newCachedThreadPool();
+    CompletionService<T> service = new ExecutorCompletionService<T>(executor);
+
+    // send the task to the service
+    service.submit(task);
+
+    // process the results in another thread
+    Future<T> result = service.poll();
+    if (result != null) {
+        result.get();
+    }
 
 ## [Controlling the rejected tasks of an executor](controlling-rejected-tasks-of-executor)
