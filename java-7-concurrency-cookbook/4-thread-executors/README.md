@@ -133,3 +133,14 @@ Another important advantage of the Executor framework is the `Callable` interfac
     }
 
 ## [Controlling the rejected tasks of an executor](controlling-rejected-tasks-of-executor)
+
+    public class RejectedTaskController implements RejectedExecutionHandler {
+        @Override
+        public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
+        }
+    }
+
+    executor.setRejectedExecutionHandler(controller);
+
+    executor.shutdown();
+    executor.submit(task);
